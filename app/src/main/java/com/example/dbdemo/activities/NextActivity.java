@@ -10,6 +10,7 @@ import com.example.dbdemo.R;
 import com.example.dbdemo.databases.CollegeDatabase;
 import com.example.dbdemo.databinding.ActivityNextBinding;
 import com.example.dbdemo.model.Grade;
+import com.example.dbdemo.model.NameCourseGradeTuple;
 import com.example.dbdemo.model.Student;
 
 import java.util.ArrayList;
@@ -64,6 +65,20 @@ public class NextActivity extends AppCompatActivity {
                 for (Grade grade:GradeList){
                     outputText.append(String.format("%-10s%-10s%-10.2f\n",
                             grade.getCourseId(),grade.getStudentId(),grade.getStudGrade()));
+                }
+
+                outputText.append("\n\nDisplaying student name, course and grades...\n");
+                List<NameCourseGradeTuple> NameCourseGradesList = cdb.studentGradeDao().getStudentNameCourseAndGrade();
+                outputText.append(String.format("%-10s%-10s%-10s\n", "StudName", "Course", "Grade"));
+                for(NameCourseGradeTuple record:NameCourseGradesList){
+                    outputText.append(String.format("%-10s%-10s%-10.2f\n", record.getStudName(),record.getCourseId(),record.getStudGrade()));
+                }
+
+                outputText.append("\n\nDisplaying student name, course and grades...\n");
+                NameCourseGradesList = cdb.studentGradeDao().getStudentNameCourseAndHighGrade(90);
+                outputText.append(String.format("%-10s%-10s%-10s\n", "StudName", "Course", "Grade"));
+                for(NameCourseGradeTuple record:NameCourseGradesList){
+                    outputText.append(String.format("%-10s%-10s%-10.2f\n", record.getStudName(),record.getCourseId(),record.getStudGrade()));
                 }
 
                 runOnUiThread(new Runnable() {

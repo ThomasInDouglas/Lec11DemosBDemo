@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.dbdemo.interfaces.GradeDao;
 import com.example.dbdemo.interfaces.StudentDao;
+import com.example.dbdemo.interfaces.StudentGradeDao;
 import com.example.dbdemo.model.Grade;
 import com.example.dbdemo.model.Student;
 
@@ -12,4 +13,5 @@ import com.example.dbdemo.model.Student;
 public abstract class CollegeDatabase extends RoomDatabase {
     public abstract StudentDao studentDao();
     public abstract GradeDao gradeDao();
+    public abstract StudentGradeDao studentGradeDao();
 }
